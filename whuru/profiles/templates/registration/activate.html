@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if account %}
+
+<p>{{ _("Account successfully activated") }}</p>
+
+<p><a href="{{ url('auth_login') }}">{{ _("Log in") }}</a></p>
+
+{% else %}
+
+<p>{{ _("Account activation failed") }}</p>
+
+{% endif %}
+
+{% endblock %}

@@ -1,19 +1,7 @@
 /* An example CSS file that will be minified. */
 body {
     font-family: sans-serif;
-    background-color: rgb(56,142,222);
-    background-image: -webkit-gradient(
-      linear,
-      left bottom,
-      left top,
-      color-stop(0.19, rgb(56,142,222)),
-      color-stop(0.6, rgb(82,186,255))
-    );
-    background-image: -moz-linear-gradient(
-      center bottom,
-      rgb(56,142,222) 19%,
-      rgb(82,186,255) 60%
-    );
+    background-color: #ccc;
     background-repeat: repeat-x;
     min-height: 800px;
     padding-left: 30px;

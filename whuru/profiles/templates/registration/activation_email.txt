@@ -1,0 +1,5 @@
+{{ _("Activate account at") }} {{ site.name }}:
+
+http://{{ site.domain }}{{ url('registration_activate', activation_key) }}
+
+{% trans %}Link is valid for {{ expiration_days }} days.{% endtrans %}

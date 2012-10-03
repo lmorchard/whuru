@@ -12,17 +12,18 @@ PROJECT_MODULE = 'whuru'
 # Defines the views served for root URLs.
 ROOT_URLCONF = '%s.urls' % PROJECT_MODULE
 
-INSTALLED_APPS = list(INSTALLED_APPS) + [
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.admin',
-        
+INSTALLED_APPS = [
     'registration',
     'south',
     # Application base, containing global templates.
     '%s.base' % PROJECT_MODULE,
     # Example code. Can (and should) be removed for actual projects.
     '%s.examples' % PROJECT_MODULE,
+    '%s.profiles' % PROJECT_MODULE,
+] + list(INSTALLED_APPS) + [
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.admin',
 ]
 
 LOCALE_PATHS = (
@@ -33,7 +34,7 @@ LOCALE_PATHS = (
 # apps here:
 JINGO_EXCLUDE_APPS = [
     'admin',
-    'registration',
+    #'registration',
 ]
 
 # BrowserID configuration
@@ -44,8 +45,8 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_URL = 'http://127.0.0.1:8000'
 LOGIN_URL = '/'
-LOGIN_REDIRECT_URL = 'examples.home'
-LOGIN_REDIRECT_URL_FAILURE = 'examples.home'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL_FAILURE = '/'
 
 TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS) + [
     'django_browserid.context_processors.browserid_form',
@@ -82,5 +83,9 @@ DOMAIN_METHODS['messages'] = [
 #    # may use.
 #    ('media/js/**.js', 'javascript'),
 # ]
+
+ACCOUNT_ACTIVATION_DAYS = 14
+
+REGISTRATION_OPEN = True
 
 LOGGING = dict(loggers=dict(playdoh = {'level': logging.DEBUG}))

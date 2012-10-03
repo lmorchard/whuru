@@ -7,9 +7,12 @@ from .examples import urls
 from funfactory.monkeypatches import patch
 patch()
 
+import session_csrf
+session_csrf.monkeypatch()
+
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = patterns('',
     # Example:
@@ -21,13 +24,16 @@ urlpatterns = patterns('',
             "User-agent: *\n%s: /" % 'Allow' if settings.ENGAGE_ROBOTS else 'Disallow' ,
             mimetype="text/plain"
         )
-    )
+    ),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # (r'^admin/', include(admin.site.urls)),
+    (r'^admin/', include(admin.site.urls)),
+
+    (r'^profiles/', include('registration.backends.default.urls')),
+    #(r'^profiles/', include('django.contrib.auth.urls')),
 )
 
 ## In DEBUG mode, serve media files through Django.
