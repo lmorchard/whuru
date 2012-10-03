@@ -13,6 +13,12 @@ PROJECT_MODULE = 'whuru'
 ROOT_URLCONF = '%s.urls' % PROJECT_MODULE
 
 INSTALLED_APPS = list(INSTALLED_APPS) + [
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.admin',
+        
+    'registration',
+    'south',
     # Application base, containing global templates.
     '%s.base' % PROJECT_MODULE,
     # Example code. Can (and should) be removed for actual projects.

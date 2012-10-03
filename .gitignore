@@ -1,3 +1,5 @@
+.hg
+.hg*
 settings_local.py
 settings/local.py
 */settings/local.py
