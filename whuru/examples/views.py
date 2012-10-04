@@ -11,14 +11,14 @@ from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf
 
 
-log = commonware.log.getLogger('playdoh')
+# log = commonware.log.getLogger('playdoh')
 
 
 @mobile_template('examples/{mobile/}home.html')
 def home(request, template=None):
     """Main example view."""
     data = {}  # You'd add data here that you're sending to the template.
-    log.debug("I'm alive!")
+    # log.debug("I'm alive!")
     return render(request, template, data)
 
 

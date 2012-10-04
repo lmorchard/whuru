@@ -8,7 +8,6 @@ from funfactory.settings_base import *
 # you may need to edit this value. See the docs about installing from a
 # clone.
 PROJECT_MODULE = 'whuru'
-
 SITE_TITLE = 'whuru'
 
 # Defines the views served for root URLs.
@@ -17,6 +16,8 @@ ROOT_URLCONF = '%s.urls' % PROJECT_MODULE
 INSTALLED_APPS = [
     'registration',
     'south',
+    'wellknown',
+    'webfinger',
     # Application base, containing global templates.
     '%s.base' % PROJECT_MODULE,
     # Example code. Can (and should) be removed for actual projects.
@@ -37,6 +38,10 @@ LOCALE_PATHS = (
 JINGO_EXCLUDE_APPS = [
     'admin',
     #'registration',
+]
+
+SUPPORTED_NONLOCALES = SUPPORTED_NONLOCALES + [
+    '~', '.well-known', 'webfinger'
 ]
 
 # BrowserID configuration
@@ -91,3 +96,6 @@ ACCOUNT_ACTIVATION_DAYS = 14
 REGISTRATION_OPEN = True
 
 LOGGING = dict(loggers=dict(playdoh = {'level': logging.DEBUG}))
+
+WEBFINGER_HANDLER = 'whuru.profiles.webfinger_handler'
+WEBFINGER_DOMAIN = 'whuru.com'

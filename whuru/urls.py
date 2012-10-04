@@ -18,6 +18,9 @@ urlpatterns = patterns('',
     (r'^$', 'django.views.generic.simple.direct_to_template',
            {'template': 'index.html'}),
 
+    (r'^', include('wellknown.urls')),
+    (r'^webfinger/', include('webfinger.urls')),
+    
     # Example:
     #(r'', include(urls)),
     
