@@ -9,6 +9,8 @@ from funfactory.settings_base import *
 # clone.
 PROJECT_MODULE = 'whuru'
 
+SITE_TITLE = 'whuru'
+
 # Defines the views served for root URLs.
 ROOT_URLCONF = '%s.urls' % PROJECT_MODULE
 
