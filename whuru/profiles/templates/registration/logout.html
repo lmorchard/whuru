@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>{{ _("Logged out") }}</p>
+<div class="page-header">
+    <h1>Logged out</h1>
+</div>
+<a href="{{ url("auth_login") }}">Sign in again?</a>
 {% endblock %}

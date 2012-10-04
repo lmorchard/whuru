@@ -41,23 +41,27 @@
                         </ul>
 
                             {% if request.user.is_authenticated() %}
-                                <p class="navbar-text pull-right">
-                                    {% trans user_url=request.user.get_absolute_url(), user_name=request.user %}
-                                        Welcome back, <a href="{{user_url}}">{{user_name}}</a>
-                                    {% endtrans %}
-                                    (
-                                    {#
-                                        {% if notice_unseen_count %}
-                                            <a class="notices" href="{{ url('notification_notices') }}">{{ notice_unseen_count }}</a>,
-                                        {% endif %}
-                                    #}
-                                        <a href="{{ url('auth_logout') }}">{{_('Sign out')}}</a>
-                                    )
-                                </p>
-                            {% else %}
-                        <ul class="nav pull-right">
+                            <ul class="nav pull-right">
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user }} <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        {#
+                                            {% if notice_unseen_count %}
+                                            <li>
+                                                <a class="notices" href="{{ url('notification_notices') }}">{{ notice_unseen_count }}</a>,
+                                            </li>
+                                            {% endif %}
+                                        #}
+                                        <li><a href="{{ request.user.get_absolute_url() }}">{{_('View profile')}}</a></li>
+                                        <li><a href="{{ url('auth_password_change') }}">{{_('Change password')}}</a></li>
+                                        <li><a href="{{ url('auth_logout') }}">{{ _('Sign out') }}</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            {% else %}
+                            <ul class="nav pull-right">
+                                <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ _('Sign in / Sign up') }} <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li>
                                             {% block signin %}
@@ -76,7 +80,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                        </ul>
+                            </ul>
                             {% endif %}
                     </div>
                 </div>
@@ -85,6 +89,12 @@
 
         <div class="container">
             {% block content %}{% endblock %}
+            {% block footer %}
+              <hr>
+              <footer>
+                <p>Copywhat? 2012</p>
+              </footer>
+            {% endblock %}
         </div>
 
         <script src="http://code.jquery.com/jquery-latest.js"></script>
