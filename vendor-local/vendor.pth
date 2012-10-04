@@ -1,3 +1,6 @@
 src/django-debug-toolbar
 src/django-registration
 src/south
+src/python-xrd
+src/django-wellknown
+src/django-webfinger
