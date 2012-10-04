@@ -2,6 +2,9 @@
 
 {% block content %}
 <div class="hero-unit">
+    <img class="logo" src="{{ MEDIA_URL }}img/user-961.svg"
+        width="150" height="150"
+        style="float: left; margin: 0 2em 0 0; opacity: 0.7">
     <h1>Hello! Whuru?</h1>
     <p>When the web asks, "Who are you?", Whuru helps you answer.</p>
     <!-- <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p> -->
@@ -9,20 +12,43 @@
 
 <div class="row-fluid">
     <div class="span4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn" href="#">View details &raquo;</a></p>
-    </div><!--/span-->
+        <h2>About You</h2>
+        <p>Whuru lets you build a custom page to help humans discover
+            things about you. <small class="label label-warning">Coming soon</small></p>
+    </div>
     <div class="span4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn" href="#">View details &raquo;</a></p>
-    </div><!--/span-->
+        <h2>Webfinger</h2>
+        <p>Whuru uses the <a href="http://webfinger.org/">WebFinger</a> protocol
+            to help machines discover things about you.
+            <small class="label label-warning">Coming soon</small></p>
+    </div>
     <div class="span4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn" href="#">View details &raquo;</a></p>
-    </div><!--/span-->
-</div><!--/row-->
+        <h2>Persona</h2>
+        <p>Whuru enables you to log into sites using 
+            <a href="http://www.mozilla.org/en-US/persona/">Mozilla Persona</a>.
+             <small class="label label-warning">Coming soon</small></p>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span4">
+        <h2>Email</h2>
+        <p>Persona and Webfinger IDs look like email addresses. So, Whuru will
+            forward email sent to that address to an inbox of your choice.
+            <small class="label label-important">Maybe someday</small></p>
+    </div>
+    <div class="span4">
+        <h2>Custom Domains</h2>
+        <p>If you own your own domain name, you can control your identity
+            and delegate services to Whuru.
+            <small class="label label-important">Maybe someday</small></p>
+    </div>
+    <div class="span4">
+        <h2>Open Source</h2>
+        <p>Whuru is <a href="https://github.com/lmorchard/whuru">open source</a>.
+            <a href="https://github.com/lmorchard/whuru">Fork it</a>, contribute code,
+            install it on your own servers.
+            <small class="label label-success">Available now</small></p>
+    </div>
+</div>
 
 {% endblock %}
