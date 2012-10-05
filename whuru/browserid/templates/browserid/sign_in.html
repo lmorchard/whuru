@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<form id="ajax_login" method="post">
+    <input class="span2 username" placeholder="Username" type="text" name="username">
+    <input class="span2 password" placeholder="Password" type="password" name="password">
+    <button type="submit" class="btn btn-success signin">Sign in</button>
+    <button class="btn btn-danger cancel">Cancel</button>
+</form>
+{% endblock %}
+{% block page_js %}
+    <script src="{{ settings.PERSONA_BASE_URL }}include.js"></script>
+    <script src="{{ settings.PERSONA_BASE_URL }}authentication_api.js"></script>
+    <script>
+        $('#ajax_login .cancel').click(function (e) {
+            e.preventDefault();
+            navigator.id.raiseAuthenticationFailure("user canceled authentication");
+            return false;
+        });
+
+        $('#ajax_login').submit(function (e) {
+            e.preventDefault();
+            var password = $.trim($('#ajax_login input.password').val());
+            var username = $.trim($('#ajax_login input.username').val());
+
+            $.ajax({
+                url: '{{ url('whuru.profiles.login_json') }}',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify({
+                    username: username,
+                    password: password 
+                }),
+                success: function(r) {
+                    navigator.id.completeAuthentication();
+                },
+                error: function() {
+                    // TODO: Don't just bail immediately here, show a
+                    // validation failure message and allow another login attempt.
+                    navigator.id.raiseAuthenticationFailure("authentication failed");
+                }
+            });
+            return false;
+        });
+    </script>
+{% endblock %}

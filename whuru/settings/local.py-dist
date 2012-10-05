@@ -1,19 +1,29 @@
 # This is an example settings/local.py file.
 # These settings overrides what's in settings/base.py
-
+import logging
 from . import base
 
+SITE_TITLE = 'dev.whuru'
+
 # To extend any settings from settings/base.py here's an example:
-#INSTALLED_APPS = base.INSTALLED_APPS + ['debug_toolbar']
+INSTALLED_APPS = base.INSTALLED_APPS # + ['debug_toolbar']
+
+MIDDLEWARE_CLASSES = base.MIDDLEWARE_CLASSES + (
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
+)
+
+JINGO_EXCLUDE_APPS = base.JINGO_EXCLUDE_APPS + [
+    'debug_toolbar',
+]
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'playdoh_app',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+        'NAME': 'whuru',
+        'USER': 'whuru',
+        'PASSWORD': 'whuru',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
         'OPTIONS': {
             'init_command': 'SET storage_engine=InnoDB',
             'charset' : 'utf8',
@@ -27,12 +37,17 @@ DATABASES = {
     # },
 }
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Uncomment this and set to all slave DBs in use on the site.
 # SLAVE_DATABASES = ['slave']
+
+INTERNAL_IPS = ('127.0.0.1', 'localhost',)
 
 # Recipients of traceback emails and other notifications.
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
+    ('Les Orchard', 'me@lmorchard.com'),
 )
 MANAGERS = ADMINS
 
@@ -46,19 +61,19 @@ DEV = True
 
 # By default, BrowserID expects your app to use http://127.0.0.1:8000
 # Uncomment the following line if you prefer to access your app via localhost
-# SITE_URL = 'http://localhost:8000'
+SITE_URL = 'http://localhost:8000'
 
 # Playdoh ships with Bcrypt+HMAC by default because it's the most secure.
 # To use bcrypt, fill in a secret HMAC key. It cannot be blank.
 HMAC_KEYS = {
-    #'2012-06-06': 'some secret',
+    '2012-10-02': '7aac27a91b003caecc3a00f6304652a26d351d65b00c6615bb7fd64f18d12118',
 }
 
 from django_sha2 import get_password_hashers
 PASSWORD_HASHERS = get_password_hashers(base.BASE_PASSWORD_HASHERS, HMAC_KEYS)
 
 # Make this unique, and don't share it with anybody.  It cannot be blank.
-SECRET_KEY = ''
+SECRET_KEY = '486367f28e2cef59faa5b564e426de51113388b779ed31c8cfb4b717dd833cb3'
 
 # Should robots.txt allow web crawlers?  Set this to True for production
 ENGAGE_ROBOTS = True
@@ -74,8 +89,14 @@ ENGAGE_ROBOTS = True
 
 ## Log settings
 
-# SYSLOG_TAG = "http_app_playdoh"  # Make this unique to your project.
-# LOGGING = dict(loggers=dict(playdoh={'level': logging.DEBUG}))
+SYSLOG_TAG = "http_app_whuru"  # Make this unique to your project.
+LOGGING = dict(loggers=dict(playdoh={'level': logging.DEBUG}))
+LOG_LEVEL = logging.DEBUG
+logging.basicConfig(
+    level = logging.DEBUG,
+    format = '%(asctime)s %(levelname)s %(message)s',
+    # filename = '/home/vagrant/logs/kuma-django.log',
+)
 
 # Common Event Format logging parameters
 #CEF_PRODUCT = 'Playdoh'
@@ -83,4 +104,24 @@ ENGAGE_ROBOTS = True
 
 # Uncomment this line if you are running a local development install without
 # HTTPS to disable HTTPS-only cookies.
-#SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
+
+DEBUG_TOOLBAR_PANELS = (
+    'debug_toolbar.panels.version.VersionDebugPanel',
+    'debug_toolbar.panels.timer.TimerDebugPanel',
+    'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
+    'debug_toolbar.panels.headers.HeaderDebugPanel',
+    'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
+    'debug_toolbar.panels.template.TemplateDebugPanel',
+    'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_toolbar.panels.signals.SignalDebugPanel',
+    'debug_toolbar.panels.logger.LoggingPanel',
+)
+
+WEBFINGER_DOMAIN = 'dev.whuru.com'
+
+PERSONA_ID_TMPL = '%s@dev.whuru.com'
+
+PERSONA_BASE_URL = 'https://127.0.0.1:444/'
+# PERSONA_BASE_URL = 'http://127.0.0.1:10002/'
+PERSONA_CERTIFIER_URL = 'http://127.0.0.1:9999/cert_key'

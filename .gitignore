@@ -7,6 +7,7 @@ settings/local.py
 */settings/local.py
 *.py[co]
 *.sw[po]
+*.orig
 .coverage
 pip-log.txt
 docs/_gh-pages
@@ -21,3 +22,5 @@ build
 tmp/*
 *~
 *.mo
+whuru/settings/key.publickey
+whuru/settings/key.secretkey

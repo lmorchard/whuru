@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     # Example code. Can (and should) be removed for actual projects.
     '%s.examples' % PROJECT_MODULE,
     '%s.profiles' % PROJECT_MODULE,
+    '%s.browserid' % PROJECT_MODULE,
 ] + list(INSTALLED_APPS) + [
     'django.contrib.sites',
     'django.contrib.messages',
@@ -41,7 +42,8 @@ JINGO_EXCLUDE_APPS = [
 ]
 
 SUPPORTED_NONLOCALES = SUPPORTED_NONLOCALES + [
-    '~', '.well-known', 'webfinger'
+    '~', '.well-known', 'webfinger',
+    'browserid'
 ]
 
 # BrowserID configuration
@@ -99,3 +101,8 @@ LOGGING = dict(loggers=dict(playdoh = {'level': logging.DEBUG}))
 
 WEBFINGER_HANDLER = 'whuru.profiles.webfinger_handler'
 WEBFINGER_DOMAIN = 'whuru.com'
+
+PERSONA_ID_TMPL = '%s@whuru.com'
+
+PERSONA_BASE_URL = 'https://login.persona.org/'
+PERSONA_CERTIFIER_BASE_URL = 'http://127.0.0.1:9999'
