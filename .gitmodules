@@ -13,3 +13,6 @@
 [submodule "vendor-local/src/django-webfinger"]
 	path = vendor-local/src/django-webfinger
 	url = git://github.com/paulosman/django-webfinger.git
+[submodule "vendor-local/src/requests"]
+	path = vendor-local/src/requests
+	url = git://github.com/kennethreitz/requests.git

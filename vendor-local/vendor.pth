@@ -4,3 +4,4 @@ src/south
 src/python-xrd
 src/django-wellknown
 src/django-webfinger
+src/requests
