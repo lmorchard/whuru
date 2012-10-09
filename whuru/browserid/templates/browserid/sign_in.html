@@ -8,8 +8,14 @@
 </form>
 {% endblock %}
 {% block page_js %}
-    <script src="{{ settings.PERSONA_BASE_URL }}include.js"></script>
-    <script src="{{ settings.PERSONA_BASE_URL }}authentication_api.js"></script>
+    <script>
+      var persona_server = "https://login.persona.org/";
+      if (document.referrer) {
+        persona_server = /^.*?:\/\/[^/]+\//.exec(document.referrer);
+      }
+      document.write('<script src="' + persona_server + 'include.js"></scr' + 'ipt>');
+      document.write('<script src="' + persona_server + 'authentication_api.js"></scr' + 'ipt>');
+    </script>
     <script>
         $('#ajax_login .cancel').click(function (e) {
             e.preventDefault();

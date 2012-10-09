@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <body>
         <script src="{{ MEDIA_URL }}js/jquery-1.8.2.js"></script>
-        <script src="{{ settings.PERSONA_BASE_URL }}include.js"></script>
-        <script src="{{ settings.PERSONA_BASE_URL }}provisioning_api.js"></script>
+        <script>
+          var persona_server = "https://login.persona.org/";
+          if (document.referrer) {
+            persona_server = /^.*?:\/\/[^/]+\//.exec(document.referrer);
+          }
+          document.write('<script src="' + persona_server + 'include.js"></scr' + 'ipt>');
+          document.write('<script src="' + persona_server + 'provisioning_api.js"></scr' + 'ipt>');
+        </script>
         <script>
             // TODO: Figure out how to wrap most of this into an include
             navigator.id.beginProvisioning(function(email, duration) {
@@ -42,5 +48,5 @@
                 {% endif %}
             });
         </script>
-    </head>
+    </body>
 </html>
